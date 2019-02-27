@@ -1,11 +1,15 @@
 # GetNonCompliantDevices
-Use Intune Graph APIs to show non Compliant devices for each policy
+Uses Intune Graph APIs to show non Compliant devices for each policy
 
 Version 1.0.0
 
 The GetNonCompliantDevices.ps1 script searches for devices that are non compliant for each compliant policy. 
 
 Also if a device is not compliant and is does not fail the compliance check for a policy it could mean the device does not have a policy assigned. These devices will also be displayed
+
+## More Intune Samples
+This utilizes one or more parts from the Powershell Intune samples here: 
+https://github.com/microsoftgraph/powershell-intune-samples
 
 ## Prerequisites
 * The logged on user must have the appropriate Graph permissions setup in Intune prior to running the script: https://docs.microsoft.com/en-us/intune/intune-graph-apis#intune-permission-scopes
