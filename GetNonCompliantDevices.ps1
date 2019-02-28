@@ -656,14 +656,29 @@ if ($ManagedDevices)
 
     foreach ($Device in $ManagedDevices)
     {
-        if ( ($Device.complianceState -eq "nonCompliant")  -and (-not ($PolicyNonCompliantDevices.Contains($Device))) )
+        if ($Device.complianceState -eq "nonCompliant")
         {
-            Write-Host "deviceDisplayName: " $Device.deviceName -f Green
-            Write-Host "id:                " $Device.id -f Green
-            Write-Host "userName:          " $Device.userPrincipalName -f Green
-            Write-Host "Status:            " $Device.complianceState -f Green
-            Write-Host
-        }
+            if ($PolicyNonCompliantDevices.count -ne 0) 
+            {
+                #Note we can't look at $PolicyNonCompliantDevies.Contains if the array is empty
+                if (-not ($PolicyNonCompliantDevices.Contains($Device)))
+                {
+                    Write-Host "deviceDisplayName: " $Device.deviceName -f Green
+                    Write-Host "id:                " $Device.id -f Green
+                    Write-Host "userName:          " $Device.userPrincipalName -f Green
+                    Write-Host "Status:            " $Device.complianceState -f Green
+                    Write-Host
+                }
+            }
+            else
+            {
+                Write-Host "deviceDisplayName: " $Device.deviceName -f Green
+                Write-Host "id:                " $Device.id -f Green
+                Write-Host "userName:          " $Device.userPrincipalName -f Green
+                Write-Host "Status:            " $Device.complianceState -f Green
+                Write-Host               
+            }
+        } 
     }
 }
 else
